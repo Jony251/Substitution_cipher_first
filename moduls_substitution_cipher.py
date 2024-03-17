@@ -108,13 +108,21 @@ def looping_of_substitution_cipher(inp_str, loop_num, lang) -> str:
     return res
 
 
-def encode_coded_str(user_input, key) -> str:
+def str_to_int(str) -> int:
+    try:
+        return int(str)
+    except Exception as e:
+        print("Exception occurred:", e)
+
+
+def encode_coded_str(user_input, key_in) -> str:
     """
     The function getting an input from user (coded string) & key for uncode it
     :param user_input: a user input (str)
-    :param key: (int) for uncoding the user input
+    :param key: key for uncoding the user input
     :return: (str) uncoded user input
     """
+    key = str_to_int(key_in)
     if 97 <= (ord(user_input[0].lower())) <= 122:
         in_lang = 'e'
     else:
@@ -168,4 +176,3 @@ def encoding_of_substitution_cipher_using_loop_coding(inp_str) -> str:
         if char == ' ':
             ind += 1
     return res
-
