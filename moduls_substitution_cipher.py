@@ -74,14 +74,14 @@ def input_user_code_key(lang) -> int:
         # TODO: checking of numbs between n&n
 
 
-def looping_of_substitution_cipher(inp_str, loop_num, lang) -> str:
+def looping_of_substitution_cipher(inp_str, loop) -> str:
     """
        The function is coding the inp_str depending on the loop_num
        :param inp_str: the input (tuple) from a user
        :param loop_num: key (int) of the coding
-       :param lang: the language that used for the string
        :return: coded user string
        """
+    loop_num = str_to_int(loop)
     alphabets = {
         'e': {
             'lower': 'abcdefghijklmnopqrstuvwxyz',
@@ -94,7 +94,7 @@ def looping_of_substitution_cipher(inp_str, loop_num, lang) -> str:
     }
 
     res = ""
-    lang = lang[0].lower()
+    lang = 'e' if any(97 <= ord(c.lower()) <= 122 for c in inp_str) else 'r'
     alphabet = alphabets[lang]
     for char in inp_str:
         if char.islower() and char in alphabet['lower']:
@@ -127,7 +127,7 @@ def encode_coded_str(user_input, key_in) -> str:
         in_lang = 'e'
     else:
         in_lang = 'r'
-    return looping_of_substitution_cipher(user_input, (-key), in_lang)
+    return looping_of_substitution_cipher(user_input, (-key))
 
 
 def encoding_of_substitution_cipher_using_loop_coding(inp_str) -> str:

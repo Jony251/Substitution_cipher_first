@@ -8,40 +8,52 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QDialog, QVB
 
 class MainWindow(QMainWindow):
     def __init__(self):
+        """
+        Initializing the main application window.
+        """
         super().__init__()
         self.setWindowTitle("CODING_UNCODING_APP")
-        self.setGeometry(QStyle.alignedRect(Qt.LeftToRight, Qt.AlignCenter, QSize(450, 280),
+        # Set the window size to the center of the screen
+        self.setGeometry(QStyle.alignedRect(Qt.LeftToRight, Qt.AlignCenter, QSize(600, 280),
                                             QApplication.desktop().availableGeometry()))
 
-        self.radio_button1 = QRadioButton("CODING LOOP METHOD", self)
-        self.radio_button1.move(50, 50)
-        self.radio_button1.setChecked(True)  # Устанавливаем первую радиокнопку по умолчанию
+        # Create radio buttons to select the encoding method
+        self.radio_button1 = QRadioButton("LOOPING\nMETHOD", self)
+        self.radio_button1.move(50, 35)
+
+        # Set the first radio button as default
+        self.radio_button1.setChecked(True)
+
+        self.radio_button3 = QRadioButton("NUMBER\nMETHOD ", self)
+        self.radio_button3.move(250, 35)
 
         self.radio_button2 = QRadioButton("UNCODING", self)
-        self.radio_button2.move(250, 50)
+        self.radio_button2.move(450, 35)
 
+        # Labels above input fields
         self.label_input = QLabel("Input text:", self)
         self.label_input.move(50, 75)
 
         self.input_box = QLineEdit(self)
         self.input_box.move(50, 105)
-        self.input_box.resize(self.width() - 100, 30)  # Растягиваем по ширине и высоте
-        self.input_box.setPlaceholderText("Enter text here....")  # Текст-подсказка
+
+        self.input_box.resize(self.width() - 100, 30)  # Stretch by width and height
+        self.input_box.setPlaceholderText("Enter text here...\\ Ведите текст...")
 
         self.label_input_loop = QLabel("Input key:", self)
         self.label_input_loop.move(50, 145)
 
         self.input_box_loop = QLineEdit(self)
         self.input_box_loop.move(50, 175)
-        self.input_box_loop.resize(self.width() - 100, 30)  # Растягиваем по ширине и высоте
-        self.input_box_loop.setPlaceholderText("Enter key for coding...")  # Текст-подсказка
+        self.input_box_loop.resize(self.width() - 100, 30)
+        self.input_box_loop.setPlaceholderText("Enter key for coding...\\ Введите ключь...")
 
+        # Button to get an answer
         self.open_button = QPushButton("The answer", self)
         self.open_button.clicked.connect(lambda: modul_of_main.click(self))
-        self.open_button.move(300, 225)
+        self.open_button.move(450, 225)
 
-        self.selected_option = True  # True - первая радиокнопка, False - вторая радиокнопка
-
+        # Variable to store text to display in the dialog box
         self.text_to_show = ""
 
 
